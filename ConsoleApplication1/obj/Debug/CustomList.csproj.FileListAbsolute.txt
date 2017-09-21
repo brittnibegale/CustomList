@@ -1,0 +1,6 @@
+C:\Users\britt\Documents\devCode\Projects\CustomListProject\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\britt\Documents\devCode\Projects\CustomListProject\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\britt\Documents\devCode\Projects\CustomListProject\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\britt\Documents\devCode\Projects\CustomListProject\ConsoleApplication1\obj\Debug\CustomList.csprojResolveAssemblyReference.cache
+C:\Users\britt\Documents\devCode\Projects\CustomListProject\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\britt\Documents\devCode\Projects\CustomListProject\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

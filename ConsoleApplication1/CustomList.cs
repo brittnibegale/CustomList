@@ -17,12 +17,27 @@ namespace CustomList
 
         public CustomList()
         {
-            item = new T[3];
+            item = new T[2];
+        }
+        public int Count(CustomList<T>list)
+        {
+            int count = 1;
+            return count;
         }
 
-        public void Add(T item)
+        public void Capacity()
         {
 
+        }
+        public void Add(T item)
+        {
+            //item+=item[i]
+        }
+
+        public bool Remove(T item)
+        {
+            bool remover = true;
+            return remover;
         }
 
     }

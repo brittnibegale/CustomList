@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication1
+namespace CustomList
 {
     class Program
     {
         static void Main(string[] args)
         {
+            CustomList<int> list = new CustomList<int>();
+            list.Add(16);
         }
     }
 }
