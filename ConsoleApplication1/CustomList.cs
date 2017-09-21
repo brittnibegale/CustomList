@@ -58,7 +58,20 @@ namespace CustomList
             //convert if int = 2 then string of int = "n" where n=int
         }
 
-        public void 
+        public void OverLoadPlus(CustomList<T>list1, CustomList<T>list2)
+        {
+
+        }
+
+        public void OverLoadMinus(CustomList<T>list1, CustomList<T> list2)
+        {
+
+        }
+
+        public void Zip(CustomList<T>list1, CustomList<T>list2)
+        {
+
+        }
 
     }
 }
