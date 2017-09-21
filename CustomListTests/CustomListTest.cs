@@ -242,13 +242,101 @@ namespace CustomListTests
             list.Add(value);
             list.Add(value2);
             list.Remove(value);
-            int count = list.Count(list);
+            list.Count(list);
 
             //Assert
-            Assert.AreEqual(expected, count);
-          
-            
+            Assert.AreEqual(expected, list.count);
         }
+
+        [TestMethod]
+        public void Remove_CapacityOfList_ReturnCapacity()
+        {
+            //Arrange
+            CustomList<int> list = new CustomList<int>();
+            int expected = 8;
+            int value = 1;
+            int value2 = 2;
+            int value3 = 3;
+            int value4 = 4;
+            int value5 = 5;
+
+            //Act
+            list.Add(value);
+            list.Add(value2);
+            list.Add(value3);
+            list.Add(value4);
+            list.Add(value5);
+            list.Remove(value3);
+            list.Count(list);//Create properties so they are accessible
+            list.Capacity();
+
+            //Assert
+            Assert.AreEqual(expected, list.capacity);
+        }
+
+        [TestMethod]
+        public void Convert_IntListString_ReturnString()
+        {
+            CustomList<int> list = new CustomList<int>();
+            string expected = "1 2";
+            int value = 1;
+            int value2 = 2;
+
+            list.Add(value);
+            list.Add(value2);
+            string words = list.ToString();
+
+            Assert.AreEqual(expected, words);
+        }
+        [TestMethod]
+        public void Convert_StringListString_ReturnString()
+        {
+            CustomList<string> list = new CustomList<string>();
+            string expected = "hi there";
+            string value = "hi";
+            string value2 = "there";
+
+            list.Add(value);
+            list.Add(value2);
+            string words = list.ToString();
+
+            Assert.AreEqual(expected, words);
+        }
+        [TestMethod]
+        public void Convert_DoubleListString_ReturnString()
+        {
+            CustomList<double> list = new CustomList<double>();
+            string expected = "2.2 3.4 2.3";
+            double value = 2.2;
+            double value1 = 3.4;
+            double value2 = 2.3;
+
+            list.Add(value);
+            list.Add(value1);
+            list.Add(value2);
+            string words = list.ToString();
+
+            Assert.AreEqual(expected, words);
+        }
+
+        public void Check_StringToCount_ReturnCount()
+        {
+            CustomList<double> list = new CustomList<double>();
+            int expected = 1;
+            double value = 2.2;
+            double value1 = 3.4;
+            double value2 = 2.3;
+
+            list.Add(value);
+            list.Add(value1);
+            list.Add(value2);
+            string words = list.ToString();
+            list.Count(list);
+
+            Assert.AreEqual(expected, list.count);
+
+        }
+
 
     }
 }
