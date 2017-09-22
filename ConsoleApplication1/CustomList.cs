@@ -93,7 +93,7 @@ namespace CustomList
             {
                 foreach(T item in list2.items)
                 {
-                    //list1.items.Add(item);
+                    list1.Add(item);
                 }
             }
             return list1;
@@ -105,7 +105,7 @@ namespace CustomList
             {
                 foreach(T item in list2.items)
                 {
-                    //list1.items.Remove(item);
+                    list1.Remove(item);
                 }
             }
             return list1;
