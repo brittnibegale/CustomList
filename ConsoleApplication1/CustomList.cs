@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,46 +7,74 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable
     {
-        T[] item;
-        public int capacity;//create public properties
-        public int count;// create public properties
+        public T[] items;
+        public int capacity;
+        int count;
+
+        public int Count
+        {
+            get { return count; }
+        }
+
         public T this[int i]
         {
-            get { return item[i]; }
-            set { item[i] = value; }
+            get { return items[i]; }
+            set { items[i] = value; }
         }
 
         public CustomList()
         {
-            item = new T[2];
             capacity = 4;
+            items = new T[capacity];
             count = 0;
         }
-        public void Count(CustomList<T>list)
-        {
-            count = 1;
-            
-            //checkforcapacity
-            
-        }
+        
 
-        public void Capacity()
-        {
-            //keep capacity if count is below capacity or double capacity
-            capacity = capacity * 2;
-        }
+        //public void Capacity()
+        //{
+        //    capacity = capacity * 2;
+        //    count = 0;
+        //    T[] tempItems = new T[capacity];
+        //    foreach (T item in items)
+        //    {
+        //        tempItems[count] = item;
+        //        ++count;
+        //    }
+        //}
         public void Add(T item)
         {
-            //checkforcount
-            
-            //item+=item[i]
+            if (count < capacity)
+            {
+                items[count] = item;
+                ++count;
+            }
+            else if (count >= capacity)
+            {
+                capacity = capacity * 2;
+                count = 0;
+                T[] tempItems = new T[capacity];
+                foreach (T items in items)
+                {
+                    tempItems[count] = items;
+                    ++count;
+                }
+                tempItems[count] = item;
+                items = new T[capacity];
+                count = 0;
+                foreach(T newItem in tempItems)
+                {
+                    items[count] = newItem;
+                    ++count;
+                }
+            }
         }
 
         public bool Remove(T item)
         {
             bool remover = true;
+            --count;
             return remover;
         }
 
@@ -58,14 +87,28 @@ namespace CustomList
             //convert if int = 2 then string of int = "n" where n=int
         }
 
-        public void OverLoadPlus(CustomList<T>list1, CustomList<T>list2)
+        public static CustomList<T> operator + (CustomList<T>list1, CustomList<T>list2)
         {
-
+            if (list1 != null && list2 != null)
+            {
+                foreach(T item in list2.items)
+                {
+                    //list1.items.Add(item);
+                }
+            }
+            return list1;
         }
 
-        public void OverLoadMinus(CustomList<T>list1, CustomList<T> list2)
+        public static CustomList<T> operator - (CustomList<T>list1, CustomList<T> list2)
         {
-
+            if(list1 != null && list2 != null)
+            {
+                foreach(T item in list2.items)
+                {
+                    //list1.items.Remove(item);
+                }
+            }
+            return list1;
         }
 
         public void Zip(CustomList<T>list1, CustomList<T>list2)
@@ -73,5 +116,14 @@ namespace CustomList
 
         }
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

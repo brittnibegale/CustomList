@@ -122,7 +122,7 @@ namespace CustomListTests
         public void Remove_OneInt_ReturnIndexOfList()
         {
             //Arrange
-            int expected = 1;
+            int expected = 0;
             CustomList<int> list = new CustomList<int>();
             list.Add(1);
             list.Add(2);
@@ -234,10 +234,10 @@ namespace CustomListTests
             list.Add(value);
             list.Add(value2);
             list.Remove(value);
-            list.Count(list);
+            
 
             //Assert
-            Assert.AreEqual(expected, list.count);
+            Assert.AreEqual(expected, list.Count);
         }
 
         [TestMethod]
@@ -259,9 +259,7 @@ namespace CustomListTests
             list.Add(value4);
             list.Add(value5);
             list.Remove(value3);
-            list.Count(list);//Create properties so they are accessible
-            list.Capacity();
-
+            
             //Assert
             Assert.AreEqual(expected, list.capacity);
         }
@@ -326,65 +324,67 @@ namespace CustomListTests
             list.Add(value1);
             list.Add(value2);
             string words = list.ToString();
-            list.Count(list);
 
-            Assert.AreEqual(expected, list.count);
+            Assert.AreEqual(expected, list.Count);
         }
 
         [TestMethod]
-        public void PlusOverload_IntToSum_ReturnIndex()
+        public void OperatorPlus_IntToSum_ReturnIndex()
         {
             CustomList<int> list1 = new CustomList<int>();
             CustomList<int> list2 = new CustomList<int>();
+            CustomList<int> list3 = new CustomList<int>();
             int expected = 2;
             int value = 1;
             int value2 = 2;
 
             list1.Add(value);
             list2.Add(value2);
-            list1.OverLoadPlus(list1, list2);
-
-            Assert.AreEqual(expected, list1[1]);
+            list3 = list1 + list2;
+          
+            Assert.AreEqual(expected, list3[1]);
         }
 
         [TestMethod]
-        public void PlusOverload_StringtoConcat_ReturnIndex()
+        public void OperatorPlus_StringtoConcat_ReturnIndex()
         {
             CustomList<string> list1 = new CustomList<string>();
             CustomList<string> list2 = new CustomList<string>();
+            CustomList<string> list3 = new CustomList<string>();
             string expected = "there";
             string value = "hi";
             string value1 = "there";
 
             list1.Add(value);
             list2.Add(value1);
-            list1.OverLoadPlus(list1, list2);
-
-            Assert.AreEqual(expected, list1[1]);
+            list3 = list1 + list2;
+            Assert.AreEqual(expected, list3[1]);
         }
 
         [TestMethod]
-        public void PlusOverload_ListCount_ReturnCount()
+        public void OperatorPlus_ListCount_ReturnCount()
         {
             CustomList<string> list1 = new CustomList<string>();
             CustomList<string> list2 = new CustomList<string>();
+            CustomList<string> list3 = new CustomList<string>();
             int expected = 2;
             string value = "hi";
             string value1 = "there";
 
             list1.Add(value);
             list2.Add(value1);
-            list1.OverLoadPlus(list1, list2);
-            list1.Count(list1);
+            list3 = list1 + list2;
 
-            Assert.AreEqual(expected, list1.count);
+            Assert.AreEqual(expected, list3.Count);
         }
 
         [TestMethod]
-        public void PlusOverload_ManyInt_ReturnIndex()
+        public void OperatorPlus_ManyInt_ReturnIndex()
         {
             CustomList<int> list1 = new CustomList<int>();
             CustomList<int> list2 = new CustomList<int>();
+            CustomList<int> list3 = new CustomList<int>();
+
             int expected = 4;
             int value = 1;
             int value1 = 2;
@@ -397,16 +397,16 @@ namespace CustomListTests
             list1.Add(value2);
             list2.Add(value3);
             list2.Add(value4);
-            list1.OverLoadPlus(list1, list2);
-
-            Assert.AreEqual(expected, list1[3]);
+            list3 = list1 + list2;
+            Assert.AreEqual(expected, list3[3]);
         }
 
         [TestMethod]
-        public void PlusOverload_ManyInt_ReturnCount()
+        public void OperatorPlus_ManyInt_ReturnCount()
         {
             CustomList<int> list1 = new CustomList<int>();
             CustomList<int> list2 = new CustomList<int>();
+            CustomList<int> list3 = new CustomList<int>();
             int expected = 5;
             int value = 1;
             int value1 = 2;
@@ -419,18 +419,17 @@ namespace CustomListTests
             list1.Add(value2);
             list2.Add(value3);
             list2.Add(value4);
-            list1.OverLoadPlus(list1, list2);
-            list1.Count(list1);
+            list3 = list1 + list2;
 
-            Assert.AreEqual(expected, list1.count);
+            Assert.AreEqual(expected, list3.Count);
         }
 
         [TestMethod]
-        public void SubtractOverload_Int_ReturnList()
+        public void OperatorMinus_Int_ReturnList()
         {
             CustomList<int> list1 = new CustomList<int>();
             CustomList<int> list2 = new CustomList<int>();
-            int expected = 3;
+            CustomList<int> list3 = new CustomList<int>();
             int value = 1;
             int value1 = 2;
             int value2 = 3;
@@ -442,16 +441,17 @@ namespace CustomListTests
             list1.Add(value2);
             list2.Add(value3);
             list2.Add(value4);
-            list1.OverLoadMinus(list1, list2);
+            list3 = list1 - list2;
 
-            Assert.AreEqual(expected, list1[1]);
+            Assert.AreEqual(list1, list3);
         }
 
         [TestMethod]
-        public void SubtractOverload_String_ReturnList()
+        public void OperatorMinus_String_ReturnList()
         {
             CustomList<string> list1 = new CustomList<string>();
             CustomList<string> list2 = new CustomList<string>();
+            CustomList<string> list3 = new CustomList<string>();
             string expected = "there";
             string value = "hey";
             string value1 = "you";
@@ -464,15 +464,17 @@ namespace CustomListTests
             list1.Add(value2);
             list2.Add(value3);
             list2.Add(value4);
-            list1.OverLoadMinus(list1, list2);
+            list3 = list1 - list2;
 
             Assert.AreEqual(expected, list1[1]);
         }
 
-        public void SubtractOverload_ManyInt_ReturnCount()
+        [TestMethod]
+        public void OperatorMinus_ManyInt_ReturnCount()
         {
             CustomList<int> list1 = new CustomList<int>();
             CustomList<int> list2 = new CustomList<int>();
+            CustomList<int> list3 = new CustomList<int>();
             int expected = 2;
             int value = 1;
             int value1 = 2;
@@ -491,18 +493,18 @@ namespace CustomListTests
             list2.Add(value5);
             list2.Add(value6);
             list2.Add(value7);
-            list1.OverLoadMinus(list1, list2);
-            list1.Count(list1);
+            list3 = list1 - list2;
 
-            Assert.AreEqual(expected, list1.count);
+            Assert.AreEqual(expected, list3.Count);
         }
 
         [TestMethod]
-        public void SubtractOverload_AllInt_ReturnZero()
+        public void OperatorMinus_AllInt_ReturnZero()
         {
             CustomList<int> list1 = new CustomList<int>();
             CustomList<int> list2 = new CustomList<int>();
             CustomList<int> list3 = new CustomList<int>();
+            CustomList<int> list4 = new CustomList<int>();
             int value = 4;
             int value1 = 5;
             int value2 = 6;
@@ -516,9 +518,9 @@ namespace CustomListTests
             list2.Add(value3);
             list2.Add(value4);
             list2.Add(value5);
-            list1.OverLoadMinus(list1, list2);
+            list3 = list1 - list2;
 
-            Assert.AreEqual(list1, list3);
+            Assert.AreEqual(list4, list3);
         }
 
         [TestMethod]
@@ -585,9 +587,8 @@ namespace CustomListTests
             list2.Add(value2);
             list2.Add(value4);
             list1.Zip(list1, list2);
-            list1.Count(list1);
 
-            Assert.AreEqual(expected, list1.count);
+            Assert.AreEqual(expected, list1.Count);
         }
 
 
