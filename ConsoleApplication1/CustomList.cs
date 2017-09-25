@@ -10,6 +10,7 @@ namespace CustomList
     public class CustomList<T> : IEnumerable
     {
         public T[] items;
+        //public T[] tempItems;
         public int capacity;
         int count;
 
@@ -31,18 +32,6 @@ namespace CustomList
             count = 0;
         }
         
-
-        //public void Capacity()
-        //{
-        //    capacity = capacity * 2;
-        //    count = 0;
-        //    T[] tempItems = new T[capacity];
-        //    foreach (T item in items)
-        //    {
-        //        tempItems[count] = item;
-        //        ++count;
-        //    }
-        //}
         public void Add(T item)
         {
             if (count < capacity)
@@ -52,29 +41,44 @@ namespace CustomList
             }
             else if (count >= capacity)
             {
-                capacity = capacity * 2;
+                capacity = capacity * 2;// create own function for this
                 count = 0;
                 T[] tempItems = new T[capacity];
-                foreach (T items in items)
+                foreach (T thing in items)
                 {
-                    tempItems[count] = items;
+                    tempItems[count] = thing;
                     ++count;
                 }
                 tempItems[count] = item;
                 items = new T[capacity];
-                count = 0;
-                foreach(T newItem in tempItems)
-                {
-                    items[count] = newItem;
-                    ++count;
-                }
+                ++count;
+                items = tempItems;
+                //count = 0;
+                //foreach(T newItem in tempItems)
+                //{
+                //    items[count] = newItem;
+                //    ++count;
+                //}
             }
         }
 
         public bool Remove(T item)
         {
-            bool remover = true;
-            --count;
+            bool remover = false;
+
+            for (int i = 0; i < count; i++ )
+            {
+                if (items[i].Equals(item))
+                {
+                    items[i] = items[i + 1];
+                    i++;
+                    for(int j = i; j < count; j++)
+                    {
+                        items[j] = items[j + 1];
+                        remover = true;
+                    }
+                }
+            }
             return remover;
         }
 
