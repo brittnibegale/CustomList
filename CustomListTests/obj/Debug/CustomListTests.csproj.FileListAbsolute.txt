@@ -1,0 +1,9 @@
+C:\Users\britt\Documents\devCode\Projects\CustomListProject\CustomListTests\bin\Debug\CustomListTests.dll
+C:\Users\britt\Documents\devCode\Projects\CustomListProject\CustomListTests\bin\Debug\CustomListTests.pdb
+C:\Users\britt\Documents\devCode\Projects\CustomListProject\CustomListTests\bin\Debug\ConsoleApplication1.exe
+C:\Users\britt\Documents\devCode\Projects\CustomListProject\CustomListTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\britt\Documents\devCode\Projects\CustomListProject\CustomListTests\bin\Debug\ConsoleApplication1.pdb
+C:\Users\britt\Documents\devCode\Projects\CustomListProject\CustomListTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\britt\Documents\devCode\Projects\CustomListProject\CustomListTests\obj\Debug\CustomListTests.csprojResolveAssemblyReference.cache
+C:\Users\britt\Documents\devCode\Projects\CustomListProject\CustomListTests\obj\Debug\CustomListTests.dll
+C:\Users\britt\Documents\devCode\Projects\CustomListProject\CustomListTests\obj\Debug\CustomListTests.pdb

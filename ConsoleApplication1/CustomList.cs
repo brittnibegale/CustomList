@@ -53,12 +53,6 @@ namespace CustomList
                 items = new T[capacity];
                 ++count;
                 items = tempItems;
-                //count = 0;
-                //foreach(T newItem in tempItems)
-                //{
-                //    items[count] = newItem;
-                //    ++count;
-                //}
             }
         }
 
@@ -72,11 +66,17 @@ namespace CustomList
                 {
                     items[i] = items[i + 1];
                     i++;
+                    count--;
                     for(int j = i; j < count; j++)
                     {
                         items[j] = items[j + 1];
                         remover = true;
+                        count--;
                     }
+                }
+                else
+                {
+
                 }
             }
             return remover;
@@ -84,20 +84,24 @@ namespace CustomList
 
         public override string ToString()
         {
-            string input = "hi there";
-            return input;
-            // add to an array1 all the information 
-            //add all indexes of array1 to the index0 of array2
-            //convert if int = 2 then string of int = "n" where n=int
+            string newString = "";
+
+            newString = items[0].ToString();
+
+            for(int i = 1; i < count; i++)
+            {
+                newString = newString + " " + items[i].ToString();
+            }
+            return newString;
         }
 
         public static CustomList<T> operator + (CustomList<T>list1, CustomList<T>list2)
         {
             if (list1 != null && list2 != null)
             {
-                foreach(T item in list2.items)
+                for(int i = 0; i < list2.count; i ++) 
                 {
-                    list1.Add(item);
+                    list1.Add(list2.items[i]);
                 }
             }
             return list1;
@@ -107,9 +111,9 @@ namespace CustomList
         {
             if(list1 != null && list2 != null)
             {
-                foreach(T item in list2.items)
+                for(int i = 0; i < list2.count; i ++)
                 {
-                    list1.Remove(item);
+                    list1.Remove(list2.items[i]);
                 }
             }
             return list1;
@@ -117,12 +121,30 @@ namespace CustomList
 
         public void Zip(CustomList<T>list1, CustomList<T>list2)
         {
-
+            if (list1.count <= list2.count)
+            {
+                for(int i = 0; i < list1.count; i++)
+                {
+                    list1.Add(list1[i]);
+                    list2.Add(list2[i]);
+                }
+            }
+            else
+            {
+                for(int i = 0; i < list2.count; i++)
+                {
+                    list1.Add(list1[i]);
+                    list2.Add(list2[i]);
+                }
+            }
         }
 
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
-            throw new NotImplementedException();
+           for(int i = 0; i < count; i++)
+           {
+               yield return items[i];
+           }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
