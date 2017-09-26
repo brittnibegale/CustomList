@@ -10,7 +10,6 @@ namespace CustomList
     public class CustomList<T> : IEnumerable
     {
         public T[] items;
-        //public T[] tempItems;
         public int capacity;
         int count;
 
@@ -41,7 +40,7 @@ namespace CustomList
             }
             else if (count >= capacity)
             {
-                capacity = capacity * 2;// create own function for this
+                capacity = capacity * 2;
                 count = 0;
                 T[] tempItems = new T[capacity];
                 foreach (T thing in items)
@@ -93,7 +92,7 @@ namespace CustomList
             return newString;
         }
 
-        public bool Contains(T item)
+        private bool Contains(T item)
         {
             for (int i = 0;i < count; i++)
             {
@@ -143,32 +142,38 @@ namespace CustomList
         public CustomList<T> Zip(CustomList<T>list1, CustomList<T>list2)
         {
             CustomList<T> result = new CustomList<T>();
-
-            if (list1.count <= list2.count)
+            try
             {
-                for(int i = 0; i < list1.count; i++)
+                if (list1.count <= list2.count)
                 {
-                    result.Add(list1[i]);
-                    result.Add(list2[i]);
+                    for (int i = 0; i < list1.count; i++)
+                    {
+                        result.Add(list1[i]);
+                        result.Add(list2[i]);
+                    }
+                    for (int j = result.count - 1; j < list2.count; j++)
+                    {
+                        result.Add(list2[j]);
+                    }
                 }
-                for(int j= result.count -1; j <list2.count; j++)
+                else
                 {
-                    result.Add(list2[j]);
+                    for (int i = 0; i < list2.count; i++)
+                    {
+                        result.Add(list1[i]);
+                        result.Add(list2[i]);
+                    }
+                    for (int j = result.count - 1; j <= list1.count; j++)
+                    {
+                        result.Add(list1[j]);
+                    }
                 }
+                return result;
             }
-            else
+            catch(Exception)
             {
-                for(int i = 0; i < list2.count; i++)
-                {
-                    result.Add(list1[i]);
-                    result.Add(list2[i]);
-                }
-                for(int j = result.count-1; j <= list1.count; j++)
-                {
-                    result.Add(list1[j]);
-                }
+                throw new ArgumentNullException();
             }
-            return result;
         }
 
         public IEnumerator GetEnumerator()

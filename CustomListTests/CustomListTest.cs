@@ -577,7 +577,5 @@ namespace CustomListTests
 
             Assert.AreEqual(expected, list3.Count);
         }
-
-
     }
 }
