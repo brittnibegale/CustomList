@@ -312,23 +312,6 @@ namespace CustomListTests
         }
 
         [TestMethod]
-        public void Check_StringToCount_ReturnCount()
-        {
-            CustomList<double> list = new CustomList<double>();
-            int expected = 1;
-            double value = 2.2;
-            double value1 = 3.4;
-            double value2 = 2.3;
-
-            list.Add(value);
-            list.Add(value1);
-            list.Add(value2);
-            string words = list.ToString();
-
-            Assert.AreEqual(expected, list.Count);
-        }
-
-        [TestMethod]
         public void OperatorPlus_IntToSum_ReturnIndex()
         {
             CustomList<int> list1 = new CustomList<int>();
@@ -430,6 +413,7 @@ namespace CustomListTests
             CustomList<int> list1 = new CustomList<int>();
             CustomList<int> list2 = new CustomList<int>();
             CustomList<int> list3 = new CustomList<int>();
+            int expected = 5;
             int value = 1;
             int value1 = 2;
             int value2 = 3;
@@ -443,7 +427,7 @@ namespace CustomListTests
             list2.Add(value4);
             list3 = list1 - list2;
 
-            Assert.AreEqual(list1, list3);
+            Assert.AreEqual(list3[0], expected);
         }
 
         [TestMethod]
@@ -466,7 +450,7 @@ namespace CustomListTests
             list2.Add(value4);
             list3 = list1 - list2;
 
-            Assert.AreEqual(expected, list1[1]);
+            Assert.AreEqual(expected, list1[2]);
         }
 
         [TestMethod]
@@ -520,7 +504,7 @@ namespace CustomListTests
             list2.Add(value5);
             list3 = list1 - list2;
 
-            Assert.AreEqual(list4, list3);
+            Assert.AreEqual(list4[2], list3[2]);
         }
 
         [TestMethod]
@@ -528,6 +512,7 @@ namespace CustomListTests
         {
             CustomList<int> list1 = new CustomList<int>();
             CustomList<int> list2 = new CustomList<int>();
+            CustomList<int> list3 = new CustomList<int>();
             int expected = 4;
             int value = 1;
             int value1 = 2;
@@ -536,13 +521,13 @@ namespace CustomListTests
             int value4 = 5;
 
             list1.Add(value);
-            list1.Add(value1);
-            list1.Add(value3);
-            list2.Add(value2);
-            list2.Add(value4);
-            list1.Zip(list1, list2);
+            list1.Add(value2);
+            list1.Add(value4);
+            list2.Add(value1);
+            list2.Add(value3);
+            list3 = list1.Zip(list1, list2);
 
-            Assert.AreEqual(expected, list1[3]);
+            Assert.AreEqual(expected, list3[3]);
         }
 
         [TestMethod]
@@ -550,6 +535,7 @@ namespace CustomListTests
         {
             CustomList<string> list1 = new CustomList<string>();
             CustomList<string> list2 = new CustomList<string>();
+            CustomList<string> list3 = new CustomList<string>();
             string expected = "you";
             string value = "hi";
             string value2 = "there";
@@ -564,9 +550,9 @@ namespace CustomListTests
             list2.Add(value2);
             list2.Add(value4);
             list2.Add(value6);
-            list1.Zip(list1, list2);
+            list3 = list1.Zip(list1, list2);
 
-            Assert.AreEqual(expected, list1[2]);
+            Assert.AreEqual(expected, list3[2]);
         }
 
         [TestMethod]
@@ -574,6 +560,7 @@ namespace CustomListTests
         {
             CustomList<int> list1 = new CustomList<int>();
             CustomList<int> list2 = new CustomList<int>();
+            CustomList<int> list3 = new CustomList<int>();
             int expected = 5;
             int value = 1;
             int value1 = 2;
@@ -586,9 +573,9 @@ namespace CustomListTests
             list1.Add(value3);
             list2.Add(value2);
             list2.Add(value4);
-            list1.Zip(list1, list2);
+            list3 = list1.Zip(list1, list2);
 
-            Assert.AreEqual(expected, list1.Count);
+            Assert.AreEqual(expected, list3.Count);
         }
 
 

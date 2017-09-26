@@ -66,8 +66,7 @@ namespace CustomList
                 {
                     items[i] = items[i + 1];
                     i++;
-                    count--;
-                    for(int j = i; j < count; j++)
+                    for (int j = i; j < count; j++)
                     {
                         items[j] = items[j + 1];
                         remover = true;
@@ -76,7 +75,6 @@ namespace CustomList
                 }
                 else
                 {
-
                 }
             }
             return remover;
@@ -95,48 +93,82 @@ namespace CustomList
             return newString;
         }
 
-        public static CustomList<T> operator + (CustomList<T>list1, CustomList<T>list2)
+        public bool Contains(T item)
         {
-            if (list1 != null && list2 != null)
+            for (int i = 0;i < count; i++)
             {
-                for(int i = 0; i < list2.count; i ++) 
+                if (items[i].Equals(item))
                 {
-                    list1.Add(list2.items[i]);
+                    return true;
                 }
             }
-            return list1;
+            return false;
+        }
+
+        public static CustomList<T> operator + (CustomList<T>list1, CustomList<T>list2)
+        {
+            CustomList<T> list3 = new CustomList<T>();
+
+            if (list1 != null && list2 != null)
+            {
+                for(int i = 0; i < list1.count; i ++) 
+                {
+                    list3.Add(list1.items[i]);
+                }
+                for(int i = 0; i < list2.count; i++)
+                {
+                    list3.Add(list2.items[i]);
+                }
+            }
+            return list3;
         }
 
         public static CustomList<T> operator - (CustomList<T>list1, CustomList<T> list2)
         {
+           CustomList<T> list3 = new CustomList<T>();
+
             if(list1 != null && list2 != null)
             {
-                for(int i = 0; i < list2.count; i ++)
-                {
-                    list1.Remove(list2.items[i]);
-                }
+               for (int i = 0; i < list2.count; i++)
+               {
+                  if (!list1.Contains(list2[i]))
+                  {
+                     list3.Add(list2[i]);
+                  }
+               }
             }
-            return list1;
+            return list3;
         }
 
-        public void Zip(CustomList<T>list1, CustomList<T>list2)
+        public CustomList<T> Zip(CustomList<T>list1, CustomList<T>list2)
         {
+            CustomList<T> result = new CustomList<T>();
+
             if (list1.count <= list2.count)
             {
                 for(int i = 0; i < list1.count; i++)
                 {
-                    list1.Add(list1[i]);
-                    list2.Add(list2[i]);
+                    result.Add(list1[i]);
+                    result.Add(list2[i]);
+                }
+                for(int j= result.count -1; j <list2.count; j++)
+                {
+                    result.Add(list2[j]);
                 }
             }
             else
             {
                 for(int i = 0; i < list2.count; i++)
                 {
-                    list1.Add(list1[i]);
-                    list2.Add(list2[i]);
+                    result.Add(list1[i]);
+                    result.Add(list2[i]);
+                }
+                for(int j = result.count-1; j <= list1.count; j++)
+                {
+                    result.Add(list1[j]);
                 }
             }
+            return result;
         }
 
         public IEnumerator GetEnumerator()
